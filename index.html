@@ -8,20 +8,110 @@
     <script src="js/script.js"></script>
     <div class = "info">
       <h3>Details</h3>
-       <form>
-       <label for="dob">Birth Date</label><br>
-       <input type="number" id="dob" name="dob" style="width: 60%;"><br>
-       <label for="month">Birth Month</label><br>
-       <input type="number" id="month" name="month" style="width: 60%;"><br>
-       <label for="year">Birth Year</label><br>
-       <input type="number" id="year" name="year" style="width: 60%;"><br>
-       <label for="century">Birth Century</label><br>
-       <input type="number" id="century" name="century" style="width: 60%;"><br>
-       <label for="gender">Gender:</label><br>
-       <input id="op1" name="box1" type="radio">Male</input><br>
-       <input id="op2" name="box1" type="radio">Female</input><br>
-       <button class="button2" onclick="validate()" id="button1" type="submit">Submit</button>
+       <form name="myForm" onsubmit="return validate()">
+          <label for="bd">Birth Date</label><br>
+          <input type="number" id="bd" name="bd" style="width: 300px;"><br>
+          <label for="mnth">Birth Month</label><br>
+          <input type="number" id="mnth" name="mnth" style="width: 300px;"><br>
+          <label for="yr">Birth Year</label><br>
+          <input type="number" id="yr" name="yr" style="width: 300px;"><br>
+          <label for="gender">Gender:</label><br>
+          <select id="myGender" name="myGender"> 
+            <option value="op1">Male</option> 
+            <option value="op2">Female</option> 
+          </select><br>
+            <label for="gender">Gender:</label><br>
+            <input id="op1" name="gender" type="radio">Male<br>
+            <input id="op2" name="gender" type="radio">Female<br>
+          <!-- <input type="submit" value="submit"> -->
+          <button class="namefinder">Submit</button>
       </form>
     </div>
+    <script>
+      function validate(){
+          var DD = parseInt(document.forms["myForm"]["bd"].value);
+          var MM = parseInt(document.forms["myForm"]["mnth"].value);
+          var YY = parseInt((document.forms["myForm"]["yr"].value).slice(2, 4));
+          var CC = parseInt((document.forms["myForm"]["yr"].value).slice(0, 2));
+          var MF = document.getElementById('myGender');
+          // console.log(`${d},${m},${y},${c}`);
+          // alert(d)
+          
+
+          var day = (((CC/4) -2*CC-1) + ((5*YY/4) ) + ((26*(MM+1)/10)) + DD) % 7;
+          // alert(day)
+          var dayName = Math.round(day);
+          alert(dayName)
+
+          
+          
+  if(dayName === 0 && op1.checked === true){
+    swal("Your name is Kwasi");
+  }
+  else if(dayName === 0 && op2.checked === true){
+    swal("Your name is Akosua");
+  }
+  if(dayName === 1 && op1.checked === true){
+      swal("Your name is Kwadwo");
+  }
+  else if(dayName === 1 && op2.checked === true){
+    swal("Your name is Adwoa");
+  }
+  if(dayName === 2 && op1.checked === true){
+      swal("Your name is Kwabena");
+  }
+  else if(dayName === 2 && op2.checked === true){
+    swal("Your name is Abenaa");
+  }
+  if(dayName === 3 && op1.checked === true){
+      swal("Your name is Kwaku");
+  }
+  else if(dayName === 3 && op2.checked === true){
+    swal("Your name is Akua");
+  }
+  if(dayName === 4 && op1.checked === true){
+      swal("Your name is Yaw");
+  }
+  else if(dayName === 4 && op2.checked === true){
+    swal("Your name is Yaa");
+  }
+  if(dayName === 5 && op1.checked === true){
+      swal("Your name is Kofi");
+  }
+  else if(dayName === 5 && op2.checked === true){
+    swal("Your name is Afua");
+  }
+  if(dayName === 6 && op1.checked === true){
+      swal("Your name is Kwame");
+  }
+  else if(dayName === 6 && op2.checked === true){
+    swal("Your name is Ama");
+  }
+
+  if(DD === '' || MM === '' || YY === '' || CC == ''){
+    swal ({
+      title: "Error", 
+      text: "You haven't filled all fields!",
+      icon: "warning",
+      });
+  }
+  else if(DD <=0 || DD>31){
+    swal({
+      title: "Error",
+      text: "Invalid Date",
+      icon: "warning"
+      });
+  }
+  else if(MM <=0 || MM>12){
+    swal({
+      title: "Error",
+      text: "Invalid Date",
+      icon: "warning"
+      });
+  }
+     
+          
+      }
+    </script>
   </body>
 </html>
